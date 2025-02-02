@@ -1,5 +1,8 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useContext } from 'react';
+import {ShoppingCartContext} from "../../context/ShoppingCartContext";
+import { PlusCircleIcon } from '@heroicons/react/16/solid';
 
 const ProductCard = ({product}) => {
 
@@ -7,6 +10,8 @@ const ProductCard = ({product}) => {
 
   const [averageRating, setAverageRating] = useState(0);
   const [ratingsCount, setRatingsCount] = useState(0);
+
+  const context = useContext(ShoppingCartContext)
 
   const handleRating = (star) => {
     setRating(star);
@@ -17,17 +22,27 @@ const ProductCard = ({product}) => {
     setRatingsCount(newRatingsCount);
   };
 
+  const addProductsToCart = (event, product) => {
+    event.stopPropagation()
+    context.setCount(context.count + 1)
+    context.setCartProducts([...context.cartProducts,product ])
+    context.openCheckoutSideMenu()
+    console.log("Cart ", context.cartProducts)
+
+  }
+
   return (
-    <div className="max-w-sm bg-black border border-gray-700 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
-      <div className="relative">
+    <div className="max-w-sm h-[640px] bg-black border border-gray-700 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
+      <div className="relative ">
         <img
           className="rounded-t-lg w-full"
           src={product.imageUrl}
           alt={product.name}
         />
-        <button className="absolute top-2 right-2 bg-violet-500 text-white p-2 rounded-full">
-          +
-        </button>
+        <div className="absolute top-0 right-0 flex justify-center items-center  text-white w-6 h-6 rounded-full m-2 p-1 cursor-pointer "
+        onClick={(event)=>addProductsToCart(event, product)}>
+          <PlusCircleIcon className='h-10 w-10 text-black'/>
+        </div>
       </div>
 
       <div className="p-5 text-white">

@@ -1,7 +1,10 @@
+import { useContext } from 'react';
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import { ShoppingCartContext } from '../../../context/ShoppingCartContext';
 
 const Navbar = () => {
+  const context = useContext(ShoppingCartContext)
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const toggleDropdown = () => {
@@ -10,13 +13,12 @@ const Navbar = () => {
 
   return (
     <nav className="flex justify-between items-center fixed w-full z-10 top-0 bg-black p-4">
-      {/* Menú a la izquierda */}
       <ul className="flex items-center space-x-6">
         <li className='text-xl'>
           <NavLink
             to="/"
             className={({ isActive }) =>
-              isActive ? "text-violet-500" : "text-white"
+              isActive ? "text-violet-400" : "text-white"
             }
           >
             MieMakeup
@@ -26,7 +28,7 @@ const Navbar = () => {
           <NavLink
             to="/"
             className={({ isActive }) =>
-              isActive ? "text-violet-500" : "text-white"
+              isActive ? "text-violet-400" : "text-white"
             }
           >
             All
@@ -183,7 +185,7 @@ const Navbar = () => {
             Sign In
           </NavLink>
         </li>
-        <li className="text-white ">🛒 0</li>
+        <li className="text-white ">🛒 {context.count}</li>
       </ul>
     </nav>
   );
