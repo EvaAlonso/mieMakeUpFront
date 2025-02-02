@@ -46,9 +46,9 @@ const ProductCard = ({product}) => {
       </div>
 
       <div className="p-5 text-white">
-        <a href="#">
+        
           <h5 className="mb-2 text-2xl font-bold tracking-tight text-white">{product.name}</h5>
-        </a>
+        
         <p className="mb-3 text-sm font-normal">{product.description}</p>
         <div className="flex mb-4">
           {[1, 2, 3, 4, 5].map((star) => (
