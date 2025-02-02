@@ -2,7 +2,8 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useContext } from 'react';
 import {ShoppingCartContext} from "../../context/ShoppingCartContext";
-import { PlusCircleIcon } from '@heroicons/react/16/solid';
+import { PlusIcon } from '@heroicons/react/16/solid';
+import {CheckIcon }from '@heroicons/react/16/solid';
 
 const ProductCard = ({product}) => {
 
@@ -30,6 +31,26 @@ const ProductCard = ({product}) => {
     console.log("Cart ", context.cartProducts)
 
   }
+  const renderIcon = (id) => {
+    const isInCart = context.cartProducts.filter(product => product.id === id).length > 0
+
+    if (isInCart) {
+      return (
+        <div
+          className='absolute top-0 right-0 flex justify-center items-center bg-black w-6 h-6 rounded-full m-2 p-1'>
+          <CheckIcon className='h-6 w-6 text-white'></CheckIcon>
+        </div>
+      )
+    } else {
+      return (
+        <div
+          className='absolute top-0 right-0 flex justify-center items-center bg-white w-6 h-6 rounded-full m-2 p-1'
+          onClick={(event) => addProductsToCart(event, product)}>
+          <PlusIcon className='h-6 w-6 text-black'></PlusIcon>
+        </div>
+      )
+    }
+  }
 
   return (
     <div className="max-w-sm h-[640px] bg-black border border-gray-700 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
@@ -39,10 +60,7 @@ const ProductCard = ({product}) => {
           src={product.imageUrl}
           alt={product.name}
         />
-        <div className="absolute top-0 right-0 flex justify-center items-center  text-white w-6 h-6 rounded-full m-2 p-1 cursor-pointer "
-        onClick={(event)=>addProductsToCart(event, product)}>
-          <PlusCircleIcon className='h-10 w-10 text-black'/>
-        </div>
+        {renderIcon(product.id)}
       </div>
 
       <div className="p-5 text-white">
