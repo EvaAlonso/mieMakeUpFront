@@ -1,6 +1,6 @@
 import { XCircleIcon } from "@heroicons/react/16/solid";
 
-const OrderCard = ({ name, imageUrl, price}) => {
+const OrderCard = ({ id, name, imageUrl, price, handleDelete}) => {
   return (
     <div className='flex justify-between items-center '>
       <div className="flex items-center gap-2">
@@ -11,7 +11,7 @@ const OrderCard = ({ name, imageUrl, price}) => {
       </div>
       <div className="flex items-center gap-2">
         <p className="text-lg font-medium">{price} €</p>
-        <XCircleIcon className='h-10 w-10 text-black cursor-pointer' />
+        <XCircleIcon onClick={()=> handleDelete(id)} className='h-10 w-10 text-black cursor-pointer' />
       </div>
 
     </div>
