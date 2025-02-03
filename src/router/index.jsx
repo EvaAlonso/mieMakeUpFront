@@ -8,6 +8,8 @@ import SignIn from "../Pages/SignIn";
 import Layout from "../layout/Layout";
 import React from 'react'
 import ProductDetail from "../Pages/ProductDetail/ProductDetail";
+import ProductTable from "../Pages/ProductTable/ProductTable";
+import EditProductForm from "../Pages/EditProductForm/EditProductForm";
 
 export const router = createBrowserRouter([
   { 
@@ -37,6 +39,14 @@ export const router = createBrowserRouter([
       {
         path:"/:productId",
         element: <ProductDetail/>
+      },
+      {
+        path:"/admin",
+        element: <ProductTable/>
+      },
+      {
+        path:"/update-product/:productId",
+        element: <EditProductForm/>
       }
       
     ]

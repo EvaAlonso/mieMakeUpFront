@@ -5,6 +5,7 @@ import { ProductContext } from "../../context/ProductContext";
 
 const Home = () => {
   const {products} = useContext(ProductContext);
+  
   return (
    
       <div className="mt-20 text-white">
