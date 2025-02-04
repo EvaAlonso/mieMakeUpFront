@@ -1,6 +1,6 @@
 import { createContext, useContext } from "react";
 
-const ProductContext = createContext(undefined);
+const ProductContext = createContext();
 
 const useProductContext = () => {
   const context = useContext(ProductContext);

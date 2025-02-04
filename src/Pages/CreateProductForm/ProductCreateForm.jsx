@@ -1,8 +1,13 @@
 import { useState, useEffect, useContext } from 'react';
 import { ProductContext } from '../../context/ProductContext';
+import { useParams } from "react-router-dom";
 
-function ProductCreateForm({ productToEdit }) {
-  const { createProduct, updateProductById } = useContext(ProductContext); 
+
+
+function ProductCreateForm({productToEdit}) {
+  const { productId } = useParams();
+  const { products, createProduct, updateProductById} = useContext(ProductContext); 
+
   const [name, setName] = useState('');
   const [price, setPrice] = useState('');
   const [imageUrl, setImage] = useState('');
@@ -31,16 +36,19 @@ function ProductCreateForm({ productToEdit }) {
   ];
 
   useEffect(() => {
-    if (productToEdit) {
-      setName(productToEdit.name);
-      setPrice(productToEdit.price);
-      setImage(productToEdit.imageUrl);
-      setFeatured(productToEdit.featured);
-      setCategoryId(productToEdit.categoryId);
-      setDescription(productToEdit.description);
-      setIngredients(productToEdit.ingredients);
+    if (productId) {
+      const foundProduct = products.find((p) => p.id === Number(productId));
+      if (foundProduct) {
+        setName(foundProduct.name);
+        setPrice(foundProduct.price);
+        setImage(foundProduct.imageUrl);
+        setFeatured(foundProduct.featured);
+        setCategoryId(foundProduct.categoryId);
+        setDescription(foundProduct.description);
+        setIngredients(foundProduct.ingredients);
+      }
     }
-  }, [productToEdit]);
+  }, [productId, products]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -57,7 +65,8 @@ function ProductCreateForm({ productToEdit }) {
       return;
     }
 
-    const product = {
+    const productData = {
+      id: productId ? Number(productId) : Date.now(),
       name,
       price: parseFloat(price),
       imageUrl,
@@ -68,11 +77,11 @@ function ProductCreateForm({ productToEdit }) {
       categoryName: categories.find((cat) => cat.id === categoryId)?.name || "",
     };
 
-    if (productToEdit) {
-      updateProductById(productToEdit.id, product); 
+    if (productId) {
+      updateProductById(productData); 
       setModalMessage('Product updated successfully.');
     } else {
-      createProduct(product);
+      createProduct(productData);
       setModalMessage('Product created successfully.');
     }
 
@@ -96,13 +105,13 @@ function ProductCreateForm({ productToEdit }) {
   };
 
   return (
-    <div className="max-w-lg mx-auto mt-20 p-5 border border-gray-300 rounded-lg shadow-lg bg-white">
-      <h2 className="text-2xl font-semibold mb-5 text-center text-gray-800">
+    <div className="max-w-lg mx-auto mt-20 p-5 border border-gray-300 rounded-lg shadow-lg bg-gray-700">
+      <h2 className="text-2xl font-semibold mb-5 text-center text-white">
         {productToEdit ? 'Edit Product' : 'Create New Product'}
       </h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
-          <label htmlFor="name" className="block text-gray-800">Name</label>
+          <label htmlFor="name" className="block text-white">Name</label>
           <input
             type="text"
             value={name}
@@ -113,7 +122,7 @@ function ProductCreateForm({ productToEdit }) {
           />
         </div>
         <div className="mb-4">
-          <label htmlFor="price" className="block text-gray-800">Price</label>
+          <label htmlFor="price" className="block text-white">Price</label>
           <input
             type="number"
             value={price}
@@ -125,7 +134,7 @@ function ProductCreateForm({ productToEdit }) {
         </div>
 
         <div className="mb-4">
-          <label htmlFor="imageUrl" className="block text-gray-800">Image URL</label>
+          <label htmlFor="imageUrl" className="block text-white">Image URL</label>
           <input
             type="url"
             value={imageUrl}
@@ -151,24 +160,24 @@ function ProductCreateForm({ productToEdit }) {
         )}
 
         <div className="mb-4">
-          <label htmlFor="category" className="block text-gray-800">Category</label>
+          <label htmlFor="category" className="block bg-grey-600 text-white ">Category</label>
           <select
             id="category"
             value={categoryId}
             onChange={(e) => setCategoryId(e.target.value)}
-            className="w-full px-4 py-2 mt-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-4 py-2 mt-2 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 "
             required
           >
-            <option value="">Select a category</option>
+            <option value="" className='bg-grey-600 text-black'>Select a category</option>
             {categories.map((category) => (
-              <option key={category.id} value={category.id}>
+              <option key={category.id} value={category.id} className='bg-grey-900 text-black'>
                 {category.name}
               </option>
             ))}
           </select>
         </div>
         <div className="mb-4">
-          <label htmlFor="name" className="block text-gray-800">Description</label>
+          <label htmlFor="name" className="block text-white">Description</label>
           <input
             type="text"
             value={description}
@@ -179,7 +188,7 @@ function ProductCreateForm({ productToEdit }) {
           />
         </div>
         <div className="mb-4">
-          <label htmlFor="name" className="block text-gray-800">Ingredients</label>
+          <label htmlFor="name" className="block text-white">Ingredients</label>
           <input
             type="text"
             value={ingredients}
@@ -191,7 +200,7 @@ function ProductCreateForm({ productToEdit }) {
         </div>
 
         <div className="mb-4 flex items-center">
-          <label htmlFor="featured" className="mr-2 text-gray-800">Featured</label>
+          <label htmlFor="featured" className="mr-2 text-white">Featured</label>
           <input
             type="checkbox"
             id="featured"
@@ -202,7 +211,7 @@ function ProductCreateForm({ productToEdit }) {
         </div>
 
         <button type="submit" className="w-full py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500">
-          {productToEdit ? 'Update Product' : 'Create Product'}
+          {productId ? 'Update Product' : 'Create Product'}
         </button>
       </form>
 

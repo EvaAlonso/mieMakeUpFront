@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const EditProductBtn = ({ productId }) => {
   return (
-    <Link to={`/update-product/${productId}`}>
+    <Link to={`/edit-product/${productId}`}>
         <PencilSquareIcon className="w-5 h-5" />
     </Link>
   );

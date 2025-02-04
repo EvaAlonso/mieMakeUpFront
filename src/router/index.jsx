@@ -9,8 +9,8 @@ import Layout from "../layout/Layout";
 import React from 'react'
 import ProductDetail from "../Pages/ProductDetail/ProductDetail";
 import ProductTable from "../Pages/ProductTable/ProductTable";
-import ProductCreateForm from "../Pages/ProductCreateForm/ProductCreateForm";
-import CategoryForm from "../Pages/CategoryForm/CategoryFrom";
+import ProductCreateForm from "../Pages/CreateProductForm/ProductCreateForm";
+
 
 
 
@@ -48,12 +48,12 @@ export const router = createBrowserRouter([
         element: <ProductTable/>
       },
       {
-        path:"/update-product/:productId",
+        path:"/create-product",
         element: <ProductCreateForm/>
       },
       {
-        path: "/category",
-        element: <CategoryForm/>
+        path: "/edit-product/:productId",
+        element: <ProductCreateForm />,
       }
     ]
   },

@@ -4,14 +4,15 @@ import TextDropdown from "../../components/molecules/TextDropDown"
 import EditProductBtn from "../../components/atoms/EditProductBtn"
 import { TrashIcon } from "@heroicons/react/24/outline"
 import CreateProductBtn from "../../components/atoms/CreateProductBtn"
+import { useNavigate } from "react-router-dom"
+
 
 const ProductTable = () => {
-  const { products, deleteProductById } = useProductContext()
-  const [filteredProducts, setFilteredProducts] = useState(products)
-  const [categoryFilter, setCategoryFilter] = useState("")
-  const [minPrice, setMinPrice] = useState("")
-  const [maxPrice, setMaxPrice] = useState("")
-  const [productToEdit, setProductToEdit] = useState(null)
+  const { products, deleteProductById, createProduct, updateProduct } = useProductContext()
+  const [ filteredProducts, setFilteredProducts ] = useState(products)
+  const [ categoryFilter, setCategoryFilter ] = useState("")
+  const [ minPrice, setMinPrice ] = useState("")
+  const [ maxPrice, setMaxPrice ] = useState("")
 
   useEffect(() => {
     const filtered = products.filter((product) => {
@@ -22,13 +23,16 @@ const ProductTable = () => {
       return categoryMatch && priceMatch
     })
     setFilteredProducts(filtered)
-  }, [products, categoryFilter, minPrice, maxPrice])
+  }, [ products, categoryFilter, minPrice, maxPrice ])
 
-  const categories = [...new Set(products.map((product) => product.categoryName))]
+  const categories = [ ...new Set(products.map((product) => product.categoryName)) ]
 
-  const handleEditClick = (product) => {
-    setProductToEdit(product);
-  }
+  
+  const navigate = useNavigate();
+
+  const handleEditClick = (productId) => {
+    navigate(`/edit-product/${productId}`);
+  };
 
   return (
     <div className="relative overflow-x-auto shadow-md sm:rounded-lg mt-20">
@@ -86,7 +90,7 @@ const ProductTable = () => {
           </div>
         </div>
       </div>
-      <CreateProductBtn />
+      <CreateProductBtn  onClick={() => navigate("/create-product")}/>
       <table
         className="w-full text-sm text-left text-gray-500 dark:text-gray-400"
         aria-labelledby="product-table-title"
@@ -161,7 +165,7 @@ const ProductTable = () => {
               </td>
               <td className="px-6 py-4 text-xl">{product.price} €</td>
               <td className="flex items-center px-6 py-4">
-                <EditProductBtn productId={product.id} onClick={() => handleEditClick(product)} />
+                <EditProductBtn productId={product.id} onClick={() => handleEditClick(product.id)} />
                 <button
                   onClick={() => deleteProductById(product.id)}
                   aria-label={`Delete ${product.name}`}
