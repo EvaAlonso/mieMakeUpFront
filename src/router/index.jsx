@@ -9,7 +9,10 @@ import Layout from "../layout/Layout";
 import React from 'react'
 import ProductDetail from "../Pages/ProductDetail/ProductDetail";
 import ProductTable from "../Pages/ProductTable/ProductTable";
-import EditProductForm from "../Pages/EditProductForm/EditProductForm";
+import ProductCreateForm from "../Pages/ProductCreateForm/ProductCreateForm";
+import CategoryForm from "../Pages/CategoryForm/CategoryFrom";
+
+
 
 export const router = createBrowserRouter([
   { 
@@ -46,9 +49,12 @@ export const router = createBrowserRouter([
       },
       {
         path:"/update-product/:productId",
-        element: <EditProductForm/>
+        element: <ProductCreateForm/>
+      },
+      {
+        path: "/category",
+        element: <CategoryForm/>
       }
-      
     ]
   },
   {
