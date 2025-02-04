@@ -44,9 +44,9 @@ const ProductCard = ({product}) => {
     } else {
       return (
         <div
-          className='absolute top-0 right-0 flex justify-center items-center bg-white w-6 h-6 rounded-full m-2 p-1'
+          className='absolute top-0 right-0 flex justify-center items-center bg-black w-6 h-6 rounded-full m-2 p-1'
           onClick={(event) => addProductsToCart(event, product)}>
-          <PlusIcon className='h-6 w-6 text-black'></PlusIcon>
+          <PlusIcon className='h-10 w-10 text-white'></PlusIcon>
         </div>
       )
     }
@@ -91,7 +91,7 @@ const ProductCard = ({product}) => {
         <p className="text-2xl font-semibold mb-4">{product.price} €</p>
         <Link 
         to={`/${product.id}`}
-        className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-violet-700 rounded-lg hover:bg-violet-800 focus:ring-4 focus:outline-none focus:ring-violet-300 dark:bg-violet-600 dark:hover:bg-violet-700 dark:focus:ring-violet-800">
+        className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-lime-950 rounded-lg hover:bg-lime-950 focus:ring-4 focus:outline-none focus:ring-violet-300 dark:bg-violet-900 dark:hover:bg-violet-700 dark:focus:ring-violet-800">
         Read more
           <svg
             className="rtl:rotate-180 w-3.5 h-3.5 ml-2"
@@ -109,7 +109,7 @@ const ProductCard = ({product}) => {
             />
           </svg>
         </Link>
-        <p className="mt-3 text-sm text-gray-400">Average rating: {averageRating.toFixed(1)} ({ratingsCount} votes)</p>
+        <p className="mt-3 text-sm text-white">Average rating: {averageRating.toFixed(1)} ({ratingsCount} votes)</p>
       </div>
     </div>
   );

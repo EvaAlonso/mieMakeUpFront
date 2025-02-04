@@ -16,7 +16,7 @@ const TextDropdown = ({product, textProperty}) => {
 
   return (
     <div className="relative">
-      <div className="text-sm text-gray-700 dark:text-gray-400">
+      <div className="text-sm text-gray-700 dark:text-white">
         <span>{firstFourWords}</span>
         {remainingText && !isOpen && (
           <span className="text-gray-500">... </span>

@@ -24,9 +24,7 @@ const ProductCardDetail = ({product}) => {
           src={product.imageUrl}
           alt="Product"
         />
-        <button className="absolute top-2 right-2 bg-violet-500 text-white p-2 rounded">
-          +
-        </button>
+        
       </div>
 
       <div className="p-5 w-1/2 text-white">
@@ -101,7 +99,7 @@ const ProductCardDetail = ({product}) => {
             />
           </svg>
         </a>
-        <p className="mt-3 text-sm text-gray-400">Average rating: {averageRating.toFixed(1)} ({ratingsCount} votes)</p>
+        <p className="mt-3 text-sm text-white">Average rating: {averageRating.toFixed(1)} ({ratingsCount} votes)</p>
       </div>
     </div>
   );

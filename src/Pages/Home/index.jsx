@@ -43,7 +43,7 @@ const Home = () => {
             <ProductCard key={product.id} product={product} />
           ))
         ) : (
-          <p className="text-center text-gray-400 col-span-3">No products found</p>
+          <p className="text-center text-white col-span-3">No products found</p>
         )
         }
       </div>

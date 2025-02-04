@@ -36,13 +36,14 @@ const ProductTable = () => {
 
   return (
     <div className="relative overflow-x-auto shadow-md sm:rounded-lg mt-20">
-      <div className="p-4 bg-white dark:bg-gray-800">
+      <div className="flex mb-5">
+      <div className="p-4 bg-white dark:bg-gray-800 w-175">
         <h2 className="text-lg font-semibold mb-4">Filters</h2>
         <div className="flex flex-wrap gap-4">
           <div>
             <label
               htmlFor="category-filter"
-              className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+              className="block text-sm font-medium text-white mb-1"
             >
               Category
             </label>
@@ -61,7 +62,7 @@ const ProductTable = () => {
             </select>
           </div>
           <div>
-            <label htmlFor="min-price" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+            <label htmlFor="min-price" className="block text-sm font-medium text-white mb-1">
               Min Price (€)
             </label>
             <input
@@ -75,7 +76,7 @@ const ProductTable = () => {
             />
           </div>
           <div>
-            <label htmlFor="max-price" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+            <label htmlFor="max-price" className="block text-sm font-medium text-white mb-1">
               Max Price (€)
             </label>
             <input
@@ -90,15 +91,16 @@ const ProductTable = () => {
           </div>
         </div>
       </div>
-      <CreateProductBtn  onClick={() => navigate("/create-product")}/>
+      <CreateProductBtn  onClick={() => navigate("/create-product") } className="absolute right-3"/>
+      </div>
       <table
-        className="w-full text-sm text-left text-gray-500 dark:text-gray-400"
+        className="w-full text-sm text-left text-gray-500 dark:text-white"
         aria-labelledby="product-table-title"
       >
         <caption id="product-table-title" className="sr-only">
           Product Table
         </caption>
-        <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+        <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-white">
           <tr>
             <th scope="col" className="p-4">
               <span className="sr-only">Featured</span>
@@ -138,7 +140,7 @@ const ProductTable = () => {
               key={product.id}
               className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600"
             >
-              <td className="w-4 p-4">
+              <td className="w-4 p-4 ">
                 <input
                   id={`checkbox-table-search-${product.id}`}
                   type="checkbox"
@@ -157,7 +159,7 @@ const ProductTable = () => {
                 />
               </td>
               <td className="px-6 py-4">{product.categoryName}</td>
-              <td className="px-6 py-4">
+              <td className="px-6 py-4 text-white">
                 <TextDropdown product={product} textProperty="description" />
               </td>
               <td className="px-6 py-4">

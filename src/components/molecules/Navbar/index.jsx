@@ -20,53 +20,42 @@ const Navbar = () => {
         <li className='text-xl'>
           <NavLink
             to="/"
-            className={({ isActive }) =>
-              isActive ? "text-violet-400" : "text-white"
-            }
+            className="text-white"
           >
             MieMakeup
           </NavLink>
         </li>
-        <li>
-          <NavLink
-            to="/"
-            className={({ isActive }) =>
-              isActive ? "text-violet-400" : "text-white"
-            }
-          >
-            All
-          </NavLink>
-        </li>       
+    
         
       </ul>
 
       <ul className="flex items-center space-x-6">
         <li className="text-white">client@mail.com</li>
-        <li className='hover:bg-violet-500'>
+        <li className='hover:bg-violet-900'>
           <NavLink
             to="/my-orders"
             className={({ isActive }) =>
-              isActive ? "bg-violet-800" : "text-white"
+              isActive ? "bg-violet-900" : "text-white"
             } 
           >
             My Orders
           </NavLink>
         </li>
-        <li className='hover:bg-violet-500'>
+        <li className='hover:bg-violet-900'>
           <NavLink
             to="/my-account"
             className={({ isActive }) =>
-              isActive ? "bg-violet-800" : "text-white"
+              isActive ? "bg-violet-900" : "text-white"
             }
           >
             My Account
           </NavLink>
         </li>
-        <li className='hover:bg-violet-500 '>
+        <li className='hover:bg-violet-900 '>
           <NavLink
             to="/signin"
             className={({ isActive }) =>
-              isActive ? "bg-violet-800" : "text-white"
+              isActive ? "bg-violet-900" : "text-white"
             }
           >
             Sign In
