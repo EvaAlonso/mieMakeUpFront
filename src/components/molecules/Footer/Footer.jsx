@@ -110,7 +110,7 @@ const Footer = () => {
               </svg>
               <span className="sr-only">Discord community</span>
             </a>
-            <a href="#" className="text-white hover:text-gray-900 dark:hover:text-white ms-5">
+            <a href="#" className="text-white hover:text-white ms-5">
               <svg
                 className="w-4 h-4"
                 aria-hidden="true"

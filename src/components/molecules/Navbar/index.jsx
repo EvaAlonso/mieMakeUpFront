@@ -7,12 +7,12 @@ import { ShoppingCartContext } from '../../../context/ShoppingCartContext';
 const Navbar = () => {
   const context = useContext(ShoppingCartContext);
 
-  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [ dropdownOpen, setDropdownOpen ] = useState(false);
 
   const toggleDropdown = () => {
     setDropdownOpen(!dropdownOpen);
   };
-  
+
 
   return (
     <nav className="flex justify-between items-center fixed w-full z-10 top-0 bg-black p-4">
@@ -25,8 +25,16 @@ const Navbar = () => {
             MieMakeup
           </NavLink>
         </li>
-    
-        
+        <li className='text-xl'>
+          <NavLink
+            to="/admin"
+            className="text-white"
+          >
+            Admin
+          </NavLink>
+        </li>
+
+
       </ul>
 
       <ul className="flex items-center space-x-6">
@@ -36,7 +44,7 @@ const Navbar = () => {
             to="/my-orders"
             className={({ isActive }) =>
               isActive ? "bg-violet-900" : "text-white"
-            } 
+            }
           >
             My Orders
           </NavLink>
