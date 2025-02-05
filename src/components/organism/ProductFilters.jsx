@@ -80,21 +80,21 @@ export default function ProductFilters({ minPrice, maxPrice, onFilterChange }) {
         </div>
       </div>
       
-      <div>
+      <div className="bg-gray-800">
         <h3 className="text-md font-medium text-white mb-1">Categories</h3>
-        <div className="space-y-1">
+        <div className="space-y-1 bg-gray-800 text-black">
           {availableCategories.map((category) => (
-            <div key={category} className="flex items-center">
+            <div key={category} className="flex items-center bg-gray-800 text-black">
               <input
                 type="checkbox"
                 id={category}
                 checked={categories.includes(category)}
                 onChange={() => handleCategoryChange(category)}
-                className="w-4 h-4"
+                className="w-4 h-4 bg-gray-800"
               />
               <label
                 htmlFor={category}
-                className="ml-2 text-sm font-medium text-white"
+                className="ml-2 text-sm font-medium text-white bg-gray-800"
               >
                 {category}
               </label>
